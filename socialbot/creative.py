@@ -21,22 +21,43 @@ REFERENCE_IMAGES = [
 class ArtworkError(RuntimeError):
     pass
 
-STYLE_GUIDE = """You are the art director for SEMTAS DIJITAL, a premium Turkish digital agency.
-Aim for the level of an award-winning boutique creative studio, not Canva templates.
-Visual language: cinematic editorial advertising, luxury commercial art direction,
-carefully controlled negative space, sophisticated dark navy / ultramarine / soft ice blue,
-dimensional glass structures, tangible materials, ray-traced rim light, realistic reflections,
-restrained fine-grain texture, dramatic but tasteful lighting, intentional asymmetry.
-Design for Turkish business owners. Convey the actual business subject through a powerful
-specific visual metaphor. It must feel like a bespoke high-end commercial key visual.
-Avoid: cheap gradients, generic corporate clip-art, random numbers, dashboards with invented
-results, fake company names, meaningless charts, watermark, fake logos and random lettering.
-Only generate BACKGROUND ART: no logo, no sentences, no readable text. Brand's real
-wordmark and exact Turkish copy will be composited separately for perfect accuracy.
-Reserve top 25% and bottom 18% as dark, uncluttered readable space for our typography.
-Image composition vertical 4:5. The 3 supplied references define Semtas creative quality,
-contrast, camera treatment and sophisticated layout; do not copy their words or logos.
+STYLE_GUIDE = """You are the creative director and cinematic CGI photographer for SEMTAŞ DİJİTAL, a high-end digital agency in Turkey.
+Generate a powerful, original, PROFESSIONAL PHOTO-REALISTIC CAMPAIGN HERO SCENE, not an illustrated template.
+Treat reference images as a strict premium visual quality benchmark, but create a different artwork for each topic.
+Look and feel: editorial advertising photography, realistic professional camera, carefully composed 3D objects and physical surfaces,
+sophisticated dark navy (#071321), cobalt-blue rim lighting, selective warm highlights, realistic atmosphere,
+ray traced shadows/reflections, believable material depth, immersive perspective and art direction.
+Design a vivid conceptual scene about the specific headline with dramatic focal point, tactile products,
+cinematic environment and restrained visual effects. Never use generic browser wireframes, placeholder
+dashboards, flat icons, floating circle diagrams, geometric spiral rings or AI-slide-looking panels.
+VISUAL SCENE ONLY; NO WORDS, NO TEXT, NO LETTERS, NO NUMBERS, NO LOGOS, NO WATERMARKS,
+NO PERCENTAGES, NO CHARTS, NO ROAS, NO FAKE ANALYTICS, NO FAKE CLIENT RESULTS, NO UI LABELS.
+Leave dark breathing room at LEFT/TOP for separately overlaid exact Turkish text and brand logo.
+Most detailed key visual should live towards center-right and lower half. 4:5 portrait aspect.
+This is advertising art direction for a real business, not a tech demo, not a screenshot.
 """
+
+SCENE_GUIDES = {
+    "DİJİTAL STRATEJİ": """A tangible metaphor for digital marketing budget and weak landing-page conversion.
+Photorealistic premium agency office at blue hour, sophisticated architectural depth.
+A beautifully art-directed laptop and mobile screen as believable devices, with abstract blue light
+streams approaching the screen, representing visitors. Part of the light scatters from fractured
+glass facets around the website, representing lost conversions. No charts and no statistics.
+Smart cinematic bokeh, tungsten practical light, luxury commercial CGI finish.""",
+    "WEB TASARIM": """Premium laptop showing a beautiful non-readable abstract website composition,
+strong physical depth, crisp glass panels, art-directed desk, immersive blue-hour photography.
+No dashboards, no metric numbers; focus on tactile design and trusted brand experience.""",
+    "E-TİCARET": """Premium editorial fashion ecommerce product photography with a striking
+luxury branded shopping scene: sculptural product pedestal, realistic fabric, elegant
+glass surfaces, cinematic soft purple/blue rim lights. No pretend labels or fake brands.""",
+    "REKLAM YÖNETİMİ": """High-impact creative advertising scene: realistic camera view of
+a precision target made from brushed metal and glass, one bright blue beam hitting its
+core, warm orange streaks on dark premium backdrop, photorealistic materials.
+No cartoon icons, no invented campaign results, no charts.""",
+    "SEO": """Architectural visual metaphor: an immersive sculptural glass building
+with luminous blue paths tracing discoverability and connection through a refined
+nighttime city. Sophisticated commercial photograph. No charts or statistics."""
+}
 
 def _font(size, bold=False):
     candidates = [
@@ -176,7 +197,10 @@ def _render_nano_banana(title,subtitle,category,revision_note,layout,size):
     model=os.getenv("GEMINI_IMAGE_MODEL","gemini-nano-banana-2.1").strip()
     allowed={"gemini-nano-banana-2.1","gemini-3-pro-image","gemini-3.1-flash-image","gemini-3.1-flash-lite-image"}
     if model not in allowed:raise ArtworkError("Desteklenmeyen gorsel model: "+model)
-    prompt=STYLE_GUIDE+"\nTopic: "+category+". Headline's visual meaning: "+title+"\nSupporting context: "+subtitle+"\nUser revision: "+(revision_note or "original premium layout")
+    prompt=(STYLE_GUIDE+"\nSPECIFIC HERO SCENE: "+SCENE_GUIDES.get(category,SCENE_GUIDES["DİJİTAL STRATEJİ"])+
+            "\nTOPIC: "+category+". Headline's CONCEPTUAL meaning only: "+title+
+            "\nSupporting context: "+subtitle+"\nUser revision requirements: "+(revision_note or "original premium layout")+
+            "\nMust not render words from these fields onto image. Photoreal commercial image only.")
     inp=[{"type":"text","text":prompt}]
     for ref in REFERENCE_IMAGES:
         if ref.is_file():
@@ -209,7 +233,9 @@ def _render_nano_banana(title,subtitle,category,revision_note,layout,size):
 
 def create_artwork(path,headline,subheadline,category,layout="portrait",revision_note=""):
     """Produces unique versioned output. Never silently falls back from paid image errors."""
-    backend=os.getenv("IMAGE_ENGINE","premium_pillow").strip().lower()
+    backend=os.getenv("IMAGE_ENGINE","gemini").strip().lower()
+    if os.getenv("REQUIRE_GENERATIVE_IMAGE","false").lower()=="true" and backend!="gemini":
+        raise ArtworkError("KALITE KAPISI: Pillow cizim sablonu yasak. Gercek Nano Banana gorsel modeli gerekli.")
     size=(1200,1200) if layout=="square" else (1080,1350)
     if backend=="gemini":
         art=_render_nano_banana(headline,subheadline,category,revision_note,layout,size)
