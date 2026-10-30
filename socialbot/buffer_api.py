@@ -67,7 +67,7 @@ class BufferAPI:
         }'''
         inp = {
             'text': caption, 'channelId': channel_id, 'schedulingType': 'automatic',
-            'mode': 'addToQueue', 'aiAssisted': True,
+            'mode': 'customScheduled' if due_at else 'addToQueue', 'aiAssisted': True,
             'assets': [{'image': {'url': image_url}}],
         }
         if due_at:
