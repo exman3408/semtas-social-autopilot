@@ -58,7 +58,7 @@ class BufferAPI:
                 break
         raise BufferError('Buffer listesi çok uzun/eksik; iki kez paylaşmamak için durduruldu')
 
-    def queue_image(self, channel_id, caption, image_url, due_at=None):
+    def queue_image(self, channel_id, caption, image_url, due_at=None, platform=None):
         q = '''mutation CreatePost($input: CreatePostInput!) {
           createPost(input: $input) {
             ... on PostActionSuccess { post { id dueAt } }
@@ -72,6 +72,8 @@ class BufferAPI:
         }
         if due_at:
             inp['dueAt'] = due_at
+        if platform == 'instagram':
+            inp['metadata'] = {'instagram': {'type': 'post', 'shouldShareToFeed': True}}
         result = self.call(q, {'input': inp}).get('createPost', {})
         if result.get('message'):
             raise BufferError('Buffer gönderim hatası: ' + result['message'][:300])
