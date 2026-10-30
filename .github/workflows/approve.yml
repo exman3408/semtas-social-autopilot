@@ -37,6 +37,20 @@ jobs:
             git commit -m 'review: save owner approval decision'
             git push
           fi
+      - name: Revize taslagini otomatik uret
+        if: startsWith(github.event.comment.body, '/revize ')
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          IMAGE_ENGINE: ${{ vars.IMAGE_ENGINE || 'premium_pillow' }}
+          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-nano-banana-2.1' }}
+          ALLOW_PAID_GEMINI_IMAGE_API: 'false'
+        run: |
+          python -m socialbot.revise render
+          git add content/posts docs/media
+          if ! git diff --cached --quiet; then
+            git commit -m 'revision: create new artwork without approval'
+            git push
+          fi
       - name: Onaylandiysa ve ana anahtar aciksa Buffer'a siraya al
         if: github.event.comment.body == '/onayla'
         env:
@@ -53,5 +67,58 @@ jobs:
           git add content/posts
           if ! git diff --cached --quiet; then
             git commit -m 'review: update Buffer queue status'
+            git push
+          fi
+
+  deploy-revision:
+    if: startsWith(github.event.comment.body, '/revize ')
+    needs: review
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - name: Deploy new artwork
+        id: deployment
+        uses: actions/deploy-pages@v4
+  request-revision-approval:
+    if: startsWith(github.event.comment.body, '/revize ')
+    needs: deploy-revision
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Yeni gorsel icin mobil onay Issue'su
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MEDIA_BASE_URL: ${{ vars.MEDIA_BASE_URL }}
+        run: python -m socialbot.revise request
+      - name: Save new review identity
+        run: |
+          git config user.name 'Semtas Autopilot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add content/posts
+          if ! git diff --cached --quiet; then
+            git commit -m 'review: send revised artwork for mobile approval'
             git push
           fi
