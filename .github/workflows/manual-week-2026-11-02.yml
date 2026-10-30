@@ -1,0 +1,80 @@
+name: 7 - Semtas haftalik editor plan 2-6 Kasim
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: semtas-autopilot
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Premium fotograflar ve platforma ozel metinlerle haftayi hazirla
+        run: python -m socialbot.manual_week prepare 2026-11-02
+      - name: GitHub'a bes gonderi taslagini ve iki yeni post gorselini kaydet
+        run: |
+          git config user.name 'Semtas Weekly Editor'
+          git config user.email 'actions@users.noreply.github.com'
+          git add docs/media content/posts
+          if ! git diff --cached --quiet; then
+            git commit -m 'editorial: Nov 2-6 image and caption pack'
+            git push
+          fi
+  deploy:
+    needs: prepare
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - uses: actions/deploy-pages@v4
+        id: deployment
+  approval:
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Bes icerik icin sahibine mobil onay istegi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MEDIA_BASE_URL: ${{ vars.MEDIA_BASE_URL }}
+        run: python -m socialbot.manual_week notify 2026-11-02
+      - name: Onay kimliklerini GitHub'a kaydet
+        if: always()
+        run: |
+          git config user.name 'Semtas Weekly Editor'
+          git config user.email 'actions@users.noreply.github.com'
+          git add content/posts
+          if ! git diff --cached --quiet; then
+            git commit -m 'editorial: owner review tasks for Nov 2-6'
+            git push
+          fi
