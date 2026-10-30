@@ -197,6 +197,19 @@ class RevisionCommandTests(unittest.TestCase):
 
 
 class GeminiImageGatewayTests(unittest.TestCase):
+
+    def test_quality_gate_rejects_template_engine(self):
+        import os
+        from socialbot.creative import create_artwork, ArtworkError
+        with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, {
+            "IMAGE_ENGINE": "premium_pillow",
+            "REQUIRE_GENERATIVE_IMAGE": "true",
+            "ALLOW_PAID_GEMINI_IMAGE_API": "false",
+        }):
+            with self.assertRaises(ArtworkError):
+                create_artwork(Path(d)/"bad.png","Test","Test","SEO")
+            self.assertFalse((Path(d)/"bad.png").exists())
+
     def test_premium_free_image_has_real_logo(self):
         import os
         from socialbot.creative import create_artwork
