@@ -39,5 +39,10 @@
       "state": "pending",
       "buffer_post_id": null
     }
+  },
+  "review": {
+    "status": "pending",
+    "issue_number": 1,
+    "requested_at": "2026-10-30T12:03:21.517070+00:00"
   }
 }
