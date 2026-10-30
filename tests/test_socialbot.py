@@ -90,3 +90,50 @@ class V2Tests(unittest.TestCase):
                     self.assertEqual(data['art_type'],'approved-logo-design')
                     self.assertEqual(data['media_file'],'approved-web.png')
                     g.assert_not_called()
+
+
+class MobileApprovalSafetyTests(unittest.TestCase):
+    def test_queue_never_publishes_without_issue_approval_even_when_enabled(self):
+        import json
+        import os
+        from socialbot import __main__ as bot
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        d = datetime.now(ZoneInfo("Europe/Istanbul")).date()
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / f"{d.isoformat()}.json"
+            path.write_text(json.dumps({
+                'date': d.isoformat(), 'media_file': 'example.png',
+                'review': {'status': 'pending', 'issue_number': 12},
+                'channels': {'instagram': {'caption': 'Test caption', 'state': 'pending'}}
+            }), encoding='utf-8')
+            fake = MagicMock()
+            fake.channels.return_value = [{
+                'id': 'instagram-1', 'service': 'instagram', 'name': 'semtasdijital',
+                'isQueuePaused': False, 'isDisconnected': False, 'isLocked': False
+            }]
+            keys = {
+                'PUBLISH_ENABLED': 'true', 'MEDIA_BASE_URL': 'https://example.com/media',
+                'BUFFER_ORG_ID': 'test-org',
+                'BUFFER_INSTAGRAM_CHANNEL_ID': 'instagram-1',
+                'BUFFER_FACEBOOK_CHANNEL_ID': '',
+                'BUFFER_LINKEDIN_CHANNEL_ID': '',
+            }
+            with patch.object(bot, 'POSTS', Path(td)), \\
+                 patch.object(bot, 'BufferAPI', return_value=fake), \\
+                 patch.dict(os.environ, keys):
+                bot.queue()
+            fake.queue_image.assert_not_called()
+            fake.exists_matching_post.assert_not_called()
+
+    def test_issue_body_contains_owner_mobile_mention_and_review_commands(self):
+        from socialbot.review import issue_body
+        post = {
+            'date': '2026-10-30', 'category': 'SEO', 'headline': 'Test',
+            'media_file': 'test.png',
+            'channels': {'instagram': {'caption': 'Test content'}}
+        }
+        body = issue_body(post, 'https://example.com/media')
+        self.assertIn('@exman3408', body)
+        self.assertIn('/onayla', body)
+        self.assertIn('/reddet', body)
