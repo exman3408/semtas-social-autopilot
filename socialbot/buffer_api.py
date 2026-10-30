@@ -58,7 +58,7 @@ class BufferAPI:
                 break
         raise BufferError('Buffer listesi çok uzun/eksik; iki kez paylaşmamak için durduruldu')
 
-    def queue_image(self, channel_id, caption, image_url):
+    def queue_image(self, channel_id, caption, image_url, due_at=None):
         q = '''mutation CreatePost($input: CreatePostInput!) {
           createPost(input: $input) {
             ... on PostActionSuccess { post { id dueAt } }
@@ -70,6 +70,8 @@ class BufferAPI:
             'mode': 'addToQueue', 'aiAssisted': True,
             'assets': [{'image': {'url': image_url}}],
         }
+        if due_at:
+            inp['dueAt'] = due_at
         result = self.call(q, {'input': inp}).get('createPost', {})
         if result.get('message'):
             raise BufferError('Buffer gönderim hatası: ' + result['message'][:300])
