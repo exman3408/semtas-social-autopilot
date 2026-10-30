@@ -50,3 +50,12 @@ Yeni GitHub Issues /revize yorumlarını periyodik izle. GitHub Work olay tetikl
 - `socialbot.keycheck` yalnızca API anahtarını kontrol eder, **ücretli görüntü API çağrısı yapmaz**.
 - İlk revizyon başlatıcısı: `.github/workflows/revise.yml`. Sonraki revizyonlar: `.github/workflows/approve.yml`.
 - Medya servisi ve GitHub Issues canlıda ayrıca doğrulanmalıdır; test veya API hazır olması, Nano Banana görüntüsü üretildiği anlamına gelmez.
+
+
+## Kalite kararı — 30 Ekim 2026 (en güncel)
+Kullanıcı V2 ve V3 çizim/şablon çıktılarından açıkça memnun değil. Bu tasarımlar kabul edilmedi; V3 GitHub onayı iptal edildi. Kullanıcı yalnızca fotoğrafik, sinematik, kreatif ajans seviyesinde gerçek görseller istiyor. Gerçek logoyu birebir kullan, Photoshop/retouch düzeyinde kaliteli sayfa yapısı, Türkçe kusursuz tipografi uygula. Doğrulanmamış başarı sayısı, yüzde, ROAS, müşteri logosu veya teklif uydurma. Basit çizim, wireframe, browser kutusu, soyut circle pattern kesinlikle kullanma.
+- Tüm otomatik görsel iş akışları `IMAGE_ENGINE=gemini`, `REQUIRE_GENERATIVE_IMAGE=true` ile çalışmalıdır.
+- `ALLOW_PAID_GEMINI_IMAGE_API=false` varsayılan. Nano Banana API için **ücretsiz görüntü üretim katmanı yoktur**; Google AI Pro uygulama aboneliği API erişim maliyetini karşılamaz.
+- Kullanıcı açık ücret onayı vermeden faturalandırılabilecek bir görsel isteği yapma. Anahtarın model listesini döndürmesi ücretsiz üretime izin verildiği anlamına gelmez.
+- Model erişimi/izin eksikse taslak üretimini güvenle durdur ve kullanıcıya engeli bildir. Düşük kaliteli Pillow fallback kesinlikle kullanma.
+- Mobil onay yalnızca üretilmiş ve doğru kalite kontrolünden geçmiş **yeni** görsel dosyası için açılmalı.
