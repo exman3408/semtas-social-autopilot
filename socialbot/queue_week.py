@@ -41,7 +41,7 @@ def main():
             url=base+"/"+expected_media
             if not media_accessible(url):raise RuntimeError("Public image unavailable: "+url)
             duplicate=api.exists_matching_post(org,cid,item["caption"])
-            result={"id":duplicate,"dueAt":target} if duplicate else api.queue_image(cid,item["caption"],url,due_at=target)
+            result={"id":duplicate,"dueAt":target} if duplicate else api.queue_image(cid,item["caption"],url,due_at=target,platform=platform)
             item.update({"state":"queued","buffer_post_id":result["id"],
                          "due_at":result.get("dueAt"),"approved_queue_source":"manual-week-2026-11-02"})
             save_json(path,post)
