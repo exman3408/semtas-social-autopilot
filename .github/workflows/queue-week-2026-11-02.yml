@@ -1,4 +1,4 @@
-name: 8 - Buffer haftalik plan (yalnizca uygun 3 gonderi)
+name: 8 - Buffer haftalik plan (3 onayli gonderi)
 on:
   workflow_dispatch:
   push:
