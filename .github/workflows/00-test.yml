@@ -1,0 +1,25 @@
+name: 0 - Test ve Buffer baglanti kontrolu
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Otomasyon testleri
+        run: python -m unittest discover -s tests -v
+      - name: Buffer baglantisi ve kanal kontrolu
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: |
+          if [ -z "$BUFFER_API_KEY" ]; then
+            echo 'BUFFER_API_KEY eklenmemis; canli kontrol atlandi.'
+          else
+            python -m socialbot channels
+          fi

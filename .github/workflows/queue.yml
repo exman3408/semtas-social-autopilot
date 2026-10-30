@@ -1,0 +1,42 @@
+name: 2 - Semtas Buffer kuyruguna ekle
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10 8 * * 1-5'
+permissions:
+  contents: write
+concurrency:
+  group: semtas-autopilot
+  cancel-in-progress: false
+jobs:
+  queue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Buffer safe queue sync
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_ORG_ID: ${{ vars.BUFFER_ORG_ID }}
+          BUFFER_INSTAGRAM_CHANNEL_ID: ${{ vars.BUFFER_INSTAGRAM_CHANNEL_ID }}
+          BUFFER_FACEBOOK_CHANNEL_ID: ${{ vars.BUFFER_FACEBOOK_CHANNEL_ID }}
+          BUFFER_LINKEDIN_CHANNEL_ID: ${{ vars.BUFFER_LINKEDIN_CHANNEL_ID }}
+          MEDIA_BASE_URL: ${{ vars.MEDIA_BASE_URL }}
+          BUFFER_BRAND_CHECK: semtas
+          PUBLISH_ENABLED: ${{ vars.PUBLISH_ENABLED }}
+        run: python -m socialbot queue
+      - name: Persist delivery states
+        if: always()
+        run: |
+          git config user.name 'Semtas Autopilot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add content/posts
+          if ! git diff --cached --quiet; then
+            git commit -m 'autopilot: update Buffer queue ledger'
+            git push
+          fi
