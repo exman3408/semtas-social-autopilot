@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-30",
+  "post_path": "content/posts/2026-10-30.json",
+  "version": 3,
+  "revision_key": "2026-10-30:issue-3:revision_requested:6524704208",
+  "source_comment_id": 6524704208,
+  "source_comment_author": "exman3408",
+  "source_comment_url": "https://github.com/exman3408/semtas-social-autopilot/issues/2#issuecomment-6524704208",
+  "source_issue_number": 2,
+  "review_issue_number": 3,
+  "review_issue_url": "https://github.com/exman3408/semtas-social-autopilot/issues/3",
+  "recorded_at": "2026-10-30T14:34:26Z",
+  "status": "blocked_existing_quality_rejection",
+  "observed_state": {
+    "review_status": "revision_requested",
+    "media_file": "semtas-2026-10-30-r3.png",
+    "revision_request_status": "rendered",
+    "quality_rejected": true,
+    "review_issue_state": "closed",
+    "owner_new_revision_comment_after_v3": false,
+    "publication_authorized": false,
+    "buffer_action_taken": false
+  },
+  "blocker_fingerprint": "v3:quality_rejected:real_logo_and_premium_photographic_design_unverified:no_new_approved_1080x1350_media",
+  "blocker": "The previously rendered V3 is explicitly rejected by the owner quality brief. No newly verified 1080x1350 premium photographic artwork with authentic logo has been uploaded, no GitHub Pages media URL verified, and no new owner approval issue is valid. Do not reuse V3 or create a pending review for it.",
+  "resolution_condition": "Only a genuinely new compliant image, exact-logo and Turkish-text visual QA, GitHub binary upload, Pages URL verification, new Issue accepted by socialbot/review.py, and explicit /onayla on that new Issue may advance review.",
+  "notification_policy": "Do not notify again for this unchanged blocker; notify only on new owner /revize comment or material blocker resolution/change."
+}
