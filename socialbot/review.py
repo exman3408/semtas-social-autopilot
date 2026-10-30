@@ -122,7 +122,7 @@ def apply_comment():
         return
     raw_command = str(comment.get("body") or "").strip()
     command = raw_command.lower()
-    revision_match = re.match(r"^/revize(?:\\s+(.+))?$", raw_command, flags=re.IGNORECASE | re.DOTALL)
+    revision_match = re.match(r"^/revize(?:\s+(.+))?$", raw_command, flags=re.IGNORECASE | re.DOTALL)
     if command not in ("/onayla", "/reddet") and not revision_match:
         print("[review] Yorum onay veya revize komutu degil")
         return
