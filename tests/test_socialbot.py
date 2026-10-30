@@ -139,3 +139,58 @@ class MobileApprovalSafetyTests(unittest.TestCase):
         self.assertIn('@exman3408', body)
         self.assertIn('/onayla', body)
         self.assertIn('/reddet', body)
+
+
+class RevisionCommandTests(unittest.TestCase):
+    def _event(self, path, command):
+        import json
+        event = {
+            "comment": {"id": 991, "body": command, "user": {"login": "exman3408"}},
+            "issue": {
+                "number": 1, "body": "<!-- semtas-autopilot-review:2026-10-30 -->",
+                "user": {"login": "github-actions[bot]"}
+            }
+        }
+        path.write_text(json.dumps(event), encoding="utf-8")
+
+    def test_revision_revokes_previous_test_approval(self):
+        import json, os
+        from socialbot import review
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            posts=root/"posts";posts.mkdir()
+            p=posts/"2026-10-30.json"
+            p.write_text(json.dumps({
+                "date": "2026-10-30", "review": {
+                    "status": "approved", "issue_number": 1, "approved_by": "exman3408",
+                    "approved_at": "2026-10-30T12:15:44Z"
+                },
+                "channels": {"instagram": {"state": "pending", "buffer_post_id": None}}
+            }), encoding="utf-8")
+            event=root/"event.json"
+            self._event(event, "/revize daha kaliteli ve premium bir gorsel tasarla")
+            with patch.object(review, "POSTS", posts), patch.object(review, "identity", return_value=("exman3408/semtas-social-autopilot", "dummy")), patch.dict(os.environ, {"GITHUB_EVENT_PATH": str(event)}):
+                review.apply_comment()
+            result=json.loads(p.read_text(encoding="utf-8"))
+            self.assertEqual(result["review"]["status"], "revision_requested")
+            self.assertNotIn("approved_at", result["review"])
+            self.assertIn("premium", result["review"]["revision_note"])
+            self.assertEqual(result["channels"]["instagram"]["state"], "pending")
+
+    def test_previous_artwork_cannot_be_reapproved_without_redesign(self):
+        import json, os
+        from socialbot import review
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);posts=root/"posts";posts.mkdir()
+            p=posts/"2026-10-30.json"
+            p.write_text(json.dumps({
+                "date":"2026-10-30",
+                "review":{"status":"revision_requested","issue_number":1},
+                "channels":{"instagram":{"state":"pending","buffer_post_id":None}}
+            }),encoding="utf-8")
+            event=root/"event.json"
+            self._event(event, "/onayla")
+            with patch.object(review, "POSTS", posts), patch.object(review, "identity", return_value=("exman3408/semtas-social-autopilot", "dummy")), patch.dict(os.environ, {"GITHUB_EVENT_PATH": str(event)}):
+                review.apply_comment()
+            result=json.loads(p.read_text(encoding="utf-8"))
+            self.assertEqual(result["review"]["status"], "revision_requested")
