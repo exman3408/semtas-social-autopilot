@@ -1,6 +1,13 @@
 name: 0 - Test ve Buffer baglanti kontrolu
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/00-test.yml'
+      - 'tests/test_socialbot.py'
+      - 'socialbot/review.py'
+      - 'socialbot/__main__.py'
 permissions:
   contents: read
 jobs:
