@@ -38,3 +38,15 @@ Semtaş Dijital’in mevcut otomasyonunu devral. GitHub Issues üzerinden taslak
 
 ## Takip yöntemi
 Yeni GitHub Issues /revize yorumlarını periyodik izle. GitHub Work olay tetikleyicileri yalnızca desteklenen olayları dinleyebilir; doğrudan GitHub Issue yorumu tetiklenmiyorsa zamanlanmış saatlik kontrol kullan. Aynı comment_id'yi ikinci kez işleme alma.
+
+## 30 Ekim 2026 API ve revizyon motoru güncellemesi
+- Gemini API anahtarı `socialbot.keycheck` ile ücretli üretim yapmadan `GET /v1beta/models` üzerinden doğrulanır. Anahtarın model listesini göstermesi ilgili modelin ücretsiz olduğunu **kanıtlamaz**.
+- Resmi Gemini API fiyatlandırmasında `gemini-nano-banana-2.1`, `gemini-3-pro-image`, `gemini-3.1-flash-image` görüntü çıkışı için **ücretsiz katman bulunmuyor**. Google AI Pro aboneliği API faturalandırması değildir.
+- Güvenli ücretsiz varsayılan `IMAGE_ENGINE=premium_pillow`. Bu, gerçek logo ile grafik üretir ama Nano Banana veya ChatGPT görsel oluşturma düzeyinde fotoğraf/3D üretimi **değildir**.
+- `IMAGE_ENGINE=gemini` istenirse `ALLOW_PAID_GEMINI_IMAGE_API=true` onayı gerekir; mevcut GitHub Actions iş akışları değeri **false** olarak kilitler. Ücretli çağrı kullanıcı izni olmadan yapılmaz.
+- `socialbot.creative`: isteğe bağlı Nano Banana 2.1/Pro entegrasyonu, üç onaylı referans görseli aktarımı, gerçek Semtaş logosunu ve Türkçe metinleri sonradan birebir kompozit eder.
+- `socialbot.revise`: her `/revize ...` için yeni dosya (ör. `semtas-YYYY-MM-DD-r2.png`), Pages dağıtımı ve yeni GitHub Mobile onay Issue'su oluşturma.
+- İkinci onay gelmeden Buffer kuyruğuna yeni içerik eklenmez. Önceki Issue kapatılır; eski `/onayla` yalnızca eski sürümde kalır ve geçersizdir.
+- `socialbot.keycheck` yalnızca API anahtarını kontrol eder, **ücretli görüntü API çağrısı yapmaz**.
+- İlk revizyon başlatıcısı: `.github/workflows/revise.yml`. Sonraki revizyonlar: `.github/workflows/approve.yml`.
+- Medya servisi ve GitHub Issues canlıda ayrıca doğrulanmalıdır; test veya API hazır olması, Nano Banana görüntüsü üretildiği anlamına gelmez.
