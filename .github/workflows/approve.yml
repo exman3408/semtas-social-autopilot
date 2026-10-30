@@ -1,4 +1,4 @@
-name: 4 - Semtas mobil onay
+name: 4 - Semtas mobil onay ve revize
 on:
   issue_comment:
     types: [created]
@@ -14,7 +14,7 @@ jobs:
       github.event.comment.user.login == github.repository_owner &&
       !github.event.issue.pull_request &&
       github.event.issue.user.login == 'github-actions[bot]' &&
-      (github.event.comment.body == '/onayla' || github.event.comment.body == '/reddet')
+      (github.event.comment.body == '/onayla' || github.event.comment.body == '/reddet' || startsWith(github.event.comment.body, '/revize '))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
