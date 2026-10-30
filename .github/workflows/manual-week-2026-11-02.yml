@@ -1,6 +1,10 @@
 name: 7 - Semtas haftalik editor plan 2-6 Kasim
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/manual-week-2026-11-02.yml'
 permissions:
   contents: write
 concurrency:
