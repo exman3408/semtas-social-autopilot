@@ -119,9 +119,11 @@ class MobileApprovalSafetyTests(unittest.TestCase):
                 'BUFFER_FACEBOOK_CHANNEL_ID': '',
                 'BUFFER_LINKEDIN_CHANNEL_ID': '',
             }
-            with patch.object(bot, 'POSTS', Path(td)), \\
-                 patch.object(bot, 'BufferAPI', return_value=fake), \\
-                 patch.dict(os.environ, keys):
+            with (
+                patch.object(bot, 'POSTS', Path(td)),
+                patch.object(bot, 'BufferAPI', return_value=fake),
+                patch.dict(os.environ, keys),
+            ):
                 bot.queue()
             fake.queue_image.assert_not_called()
             fake.exists_matching_post.assert_not_called()
