@@ -6,7 +6,7 @@
 
 - Semtaş'ın **kullanıcı tarafından sağlanan gerçek siyah ve beyaz logosu** (`assets/brand/`). Logoyu her yeni tasarımın içine orantılı yerleştirir.
 - Önceden onaylanan **web tasarım, reklam yönetimi ve Shopify** postları (`docs/media/approved-*.png`). Bu üç görsel, ilgili konu ilk kez hazırlandığında bir defaya mahsus kullanılır. Web görselindeki doğrulanmamış `+%187` ve `100+ marka` rakamları *yayınlanan sürümde* kaldırıldı. Orijinaller yalnızca `assets/approved/` içinde referans olarak tutulur.
-- Sonraki günlerde **Google News RSS araştırması + Gemini 2.5 Flash-Lite ücretsiz API katmanı** ile Türkçe konu/metin üretimi. RSS yalnızca fikir sağlar; kaynaklar doğrulanmış iddia gibi kullanılmaz. API kullanımı ChatGPT Plus'a dahil değildir.
+- Sonraki günlerde **Google News RSS araştırması + Gemini 3.5 Flash-Lite ücretsiz API katmanı** ile Türkçe konu/metin üretimi. RSS yalnızca fikir sağlar; kaynaklar doğrulanmış iddia gibi kullanılmaz. API kullanımı ChatGPT Plus'a dahil değildir.
 - Takip eden içerikler için **Pillow ile marka renklerinde fotoğrafsız, premium tipografik PNG şablonları**. Bunlar görsel üretim modeli ile sinematik fotoğraf üretmez; üretilen yeni tasarımlar, onaylı üç posterin bire bir kopyası değildir.
 - **Buffer GraphQL API** ile Instagram, Facebook ve LinkedIn için ilgili metin ve PNG'yi otomatik **Buffer yayın kuyruğuna ekleme** (Buffer daha sonra otomatik yayınlar).
 - Haftalık gerçek Buffer API metriklerinden rapor. API'nin sağlamadığı istatistikler üretilmez.
