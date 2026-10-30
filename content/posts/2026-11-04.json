@@ -20,6 +20,8 @@
     }
   },
   "review": {
-    "status": "awaiting_issue"
+    "status": "pending",
+    "issue_number": 6,
+    "requested_at": "2026-10-30T14:40:30.761681+00:00"
   }
 }
