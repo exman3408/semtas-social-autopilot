@@ -20,8 +20,20 @@
     }
   },
   "review": {
-    "status": "pending",
+    "status": "revision_requested",
     "issue_number": 8,
-    "requested_at": "2026-10-30T14:40:33.228968+00:00"
+    "requested_at": "2026-10-30T14:40:33.228968+00:00",
+    "revision_note": "diğer tasarımlaral uyunlu hazırla",
+    "revision_comment_id": 6525627999,
+    "revision_requests": [
+      {
+        "comment_id": 6525627999,
+        "instruction": "diğer tasarımlaral uyunlu hazırla",
+        "requested_by": "exman3408",
+        "requested_at": "2026-10-30T14:48:52.308490+00:00",
+        "status": "awaiting_redesign"
+      }
+    ],
+    "revision_requested_at": "2026-10-30T14:48:52.308502+00:00"
   }
 }
