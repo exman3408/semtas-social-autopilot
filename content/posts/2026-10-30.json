@@ -41,9 +41,9 @@
     }
   },
   "review": {
-    "status": "revision_rendered",
-    "issue_number": null,
-    "requested_at": "2026-10-30T14:01:32.813314+00:00",
+    "status": "pending",
+    "issue_number": 3,
+    "requested_at": "2026-10-30T14:04:25.401607+00:00",
     "previous_approval_test_only": true,
     "revision_note": "daha modern tasarım gerçek logo kullan daha önceki örnek görselleri referans al",
     "previous_issue_number": 2,
