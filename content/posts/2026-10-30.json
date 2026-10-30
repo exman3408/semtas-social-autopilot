@@ -41,15 +41,26 @@
     }
   },
   "review": {
-    "status": "pending",
+    "status": "revision_requested",
     "issue_number": 2,
     "requested_at": "2026-10-30T14:01:32.813314+00:00",
     "previous_approval_test_only": true,
-    "revision_note": "Kullanıcı 30 Ekim içeriğinde görseli beğenmedi; önceki /onayla yalnızca testti. Premium tasarım revizesi olmadan yayınlanmasın.",
+    "revision_note": "daha modern tasarım gerçek logo kullan daha önceki örnek görselleri referans al",
     "previous_issue_number": 1,
     "version": 2,
     "rendered_at": "2026-10-30T14:00:18.495055+00:00",
     "render_engine": "premium-pillow-free",
-    "reviewed_revision_note": "Kullanıcı 30 Ekim içeriğinde görseli beğenmedi; önceki /onayla yalnızca testti. Premium tasarım revizesi olmadan yayınlanmasın."
+    "reviewed_revision_note": "Kullanıcı 30 Ekim içeriğinde görseli beğenmedi; önceki /onayla yalnızca testti. Premium tasarım revizesi olmadan yayınlanmasın.",
+    "revision_comment_id": 6524704208,
+    "revision_requests": [
+      {
+        "comment_id": 6524704208,
+        "instruction": "daha modern tasarım gerçek logo kullan daha önceki örnek görselleri referans al",
+        "requested_by": "exman3408",
+        "requested_at": "2026-10-30T14:03:51.898562+00:00",
+        "status": "awaiting_redesign"
+      }
+    ],
+    "revision_requested_at": "2026-10-30T14:03:51.898576+00:00"
   }
 }
