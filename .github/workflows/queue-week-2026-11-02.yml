@@ -1,0 +1,42 @@
+name: 8 - Buffer haftalik plan (yalnizca uygun 3 gonderi)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/queue-week-2026-11-02.yml'
+permissions:
+  contents: write
+concurrency:
+  group: semtas-autopilot
+  cancel-in-progress: false
+jobs:
+  schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Owner-authorized 3 premium posts to future Buffer slots
+        env:
+          WEEK_QUEUE_AUTHORIZATION: OWNER_REQUEST_2026_10_30
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_ORG_ID: ${{ vars.BUFFER_ORG_ID }}
+          BUFFER_INSTAGRAM_CHANNEL_ID: ${{ vars.BUFFER_INSTAGRAM_CHANNEL_ID }}
+          BUFFER_LINKEDIN_CHANNEL_ID: ${{ vars.BUFFER_LINKEDIN_CHANNEL_ID }}
+          MEDIA_BASE_URL: ${{ vars.MEDIA_BASE_URL }}
+        run: python -m socialbot.queue_week
+      - name: Persist Buffer IDs and scheduled dates
+        if: always()
+        run: |
+          git config user.name 'Semtas Social Scheduler'
+          git config user.email 'actions@users.noreply.github.com'
+          git add content/posts
+          if ! git diff --cached --quiet; then
+            git commit -m 'buffer: record scheduled Nov 2,3,5 posts'
+            git push
+          fi
