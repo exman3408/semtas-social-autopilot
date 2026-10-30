@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-30",
+  "source_issue": 1,
+  "source_review_status": "revision_requested",
+  "created_at": "2026-10-30T13:09:44.237868+00:00",
+  "candidate_media_file": "semtas-2026-10-30-r2-candidate.png",
+  "dimensions": [
+    1092,
+    1440
+  ],
+  "required_dimensions": [
+    1080,
+    1350
+  ],
+  "status": "candidate_blocked_before_mobile_review",
+  "limitations": [
+    "Issue comments could not be read: api.github.com blocked by network policy.",
+    "Mobile review Issue not created.",
+    "GitHub Pages deployment and image URL not verified.",
+    "Generated dimensions differ from required 1080x1350; final sizing remains.",
+    "Logo was supplied as a generation reference; exact original pixel composition is not certified."
+  ],
+  "proposed_headline": "Reklam. SEO. Web. Birlikte daha güçlü.",
+  "proposed_subheadline": "Dijital stratejinizi bir bütün olarak tasarlayın.",
+  "channels": {
+    "instagram": {
+      "caption": "Dijital pazarlama bütçenizi artırmadan önce web sitenizin bu bütçeyi karşılamaya hazır olup olmadığını kontrol ettiniz mi? Reklamlar ve teknik SEO ne kadar başarılı olursa olsun, kurumsal web siteniz bu trafiği dönüştüremiyorsa çabalarınız yarıda kalır. İşte bütçesini verimli yönetmek isteyen karar vericiler için temel kontrol listesi:\n\n1. Hız ve Mobil Uyumluluk: Yavaş açılan sayfalar ilk saniyede potansiyel müşterileri kaybettirir.\n2. Net Değer Önerisi: Sitenize gelen biri ilk beş saniyede ne yaptığınızı anlamalı.\n3. Güçlü Altyapı: Teknik SEO altyapısı olmayan bir site reklam maliyetlerini artırır.\n\nEksiklerinizi görün ve dijital yatırımlarınızı bir bütün olarak ele alın.\n\nProjenizi konuşalım: semtasdijital.com\n\n#dijitalstrateji #kurumsaltasarim #semtasdijital",
+      "state": "pending",
+      "buffer_post_id": null
+    },
+    "facebook": {
+      "caption": "Pazarlama bütçesini doğru yönlendirmek her işletme sahibinin önceliğidir. Ancak reklam ve SEO çalışmaları ile kurumsal web sitesi tasarımı çoğu zaman birbirinden bağımsız yürütülür. Oysa reklamların getirdiği nitelikli trafiği karşılayacak sağlam bir altyapı, başarının temelidir.\n\nWeb sitenizin teknik altyapısı, hız optimizasyonu ve sayfa kurgusu reklam performansınızı doğrudan etkiler. Sadece reklam vermek yerine, trafiği satışa veya talebe dönüştürecek bir dijital kurgu kurmak gerekir.\n\nProjenizi konuşalım: semtasdijital.com",
+      "state": "pending",
+      "buffer_post_id": null
+    }
+  },
+  "publication_authorized": false
+}
