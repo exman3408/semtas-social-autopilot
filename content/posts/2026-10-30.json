@@ -41,9 +41,9 @@
     }
   },
   "review": {
-    "status": "revision_rendered",
-    "issue_number": null,
-    "requested_at": "2026-10-30T12:03:21.517070+00:00",
+    "status": "pending",
+    "issue_number": 2,
+    "requested_at": "2026-10-30T14:01:32.813314+00:00",
     "previous_approval_test_only": true,
     "revision_note": "Kullanıcı 30 Ekim içeriğinde görseli beğenmedi; önceki /onayla yalnızca testti. Premium tasarım revizesi olmadan yayınlanmasın.",
     "previous_issue_number": 1,
