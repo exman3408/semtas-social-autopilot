@@ -127,6 +127,15 @@ def queue():
         day = date.fromisoformat(payload['date'])
         if not (today()-timedelta(days=7) <= day <= today()):
             continue
+        review = payload.get("review") or {}
+        # Approval is a mandatory second gate, even when PUBLISH_ENABLED=true.
+        owner = os.getenv("GITHUB_REPOSITORY", "exman3408/semtas-social-autopilot").split("/")[0]
+        if not (review.get("status") == "approved"
+                and review.get("approved_by") == owner
+                and review.get("approved_at")
+                and isinstance(review.get("issue_number"), int)):
+            print(f'[queue] ONAY YOK: {day.isoformat()} Buffer kuyruguna alinmayacak')
+            continue
         for platform, item in payload.get('channels', {}).items():
             if platform not in enabled or item.get('state') in ('queued', 'published'):
                 continue
