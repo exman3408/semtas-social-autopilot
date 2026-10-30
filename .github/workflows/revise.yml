@@ -24,9 +24,10 @@ jobs:
       - name: Revize bekleyen gorselleri yeni surum olarak uret
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          IMAGE_ENGINE: ${{ vars.IMAGE_ENGINE || 'premium_pillow' }}
+          IMAGE_ENGINE: gemini
           GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-nano-banana-2.1' }}
-          ALLOW_PAID_GEMINI_IMAGE_API: 'false'
+          ALLOW_PAID_GEMINI_IMAGE_API: ${{ vars.ALLOW_PAID_GEMINI_IMAGE_API || 'false' }}
+          REQUIRE_GENERATIVE_IMAGE: 'true'
         run: python -m socialbot.revise render
       - name: Kaydet - henuz yayin onayi yok
         run: |
