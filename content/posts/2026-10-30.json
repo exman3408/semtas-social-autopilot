@@ -41,8 +41,10 @@
     }
   },
   "review": {
-    "status": "pending",
+    "status": "approved",
     "issue_number": 1,
-    "requested_at": "2026-10-30T12:03:21.517070+00:00"
+    "requested_at": "2026-10-30T12:03:21.517070+00:00",
+    "approved_by": "exman3408",
+    "approved_at": "2026-10-30T12:15:44.078003+00:00"
   }
 }
