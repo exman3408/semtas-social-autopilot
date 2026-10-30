@@ -4,7 +4,7 @@
   "seed": "Kurumsal web sitesi ile reklam ve SEO çalışmalarının birbiriyle bağlantısı",
   "headline": "Reklam ve SEO Bütçeniz Web Sitenize Takılıyor Olabilir",
   "subheadline": "Google ve Meta reklamlarına bütçe ayırıyor ancak istediğiniz dönüşü alamıyorsanız, sorun trafikte değil, karşılandığı yerdedir.",
-  "art_type": "brand-template",
+  "art_type": "premium-pillow-free",
   "sources_for_research_only": [
     {
       "title": "SEO Uzmanı Erhan Tunçer’den Dijital Rekabete Yeni Yaklaşım - Esgazete",
@@ -27,7 +27,7 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1TQ2Z6bC0zQ013ZzBfOWpTMlB5VC1uYjJJLTRCLVhtdjBzLVJuQ0FzcEtnWFZCMEJIY24yZHJ5Xy1tX3lSM3kyTnE0QVkyNVJXMk1YVDdETEZSX2pnOXJjSGZaVUh3NDFDMWpLYVk4d0pJZ1JpV1hkZURaaw?oc=5"
     }
   ],
-  "media_file": "semtas-2026-10-30.png",
+  "media_file": "semtas-2026-10-30-r2.png",
   "channels": {
     "instagram": {
       "caption": "Dijital pazarlama bütçenizi artırmadan önce web sitenizin bu bütçeyi karşılamaya hazır olup olmadığını kontrol ettiniz mi? Reklamlar ve teknik SEO ne kadar başarılı olursa olsun, kurumsal web siteniz bu trafiği dönüştüremiyorsa çabalarınız yarıda kalır. İşte bütçesini verimli yönetmek isteyen karar vericiler için temel kontrol listesi:\n\n1. Hız ve Mobil Uyumluluk: Yavaş açılan sayfalar ilk saniyede potansiyel müşterileri kaybettirir.\n2. Net Değer Önerisi: Sitenize gelen biri ilk beş saniyede ne yaptığınızı anlamalı.\n3. Güçlü Altyapı: Teknik SEO altyapısı olmayan bir site reklam maliyetlerini artırır.\n\nEksiklerinizi görün ve dijital yatırımlarınızı bir bütün olarak ele alın.\n\nProjenizi konuşalım: semtasdijital.com\n\n#dijitalstrateji #kurumsaltasarim #semtasdijital",
@@ -41,10 +41,15 @@
     }
   },
   "review": {
-    "status": "revision_requested",
-    "issue_number": 1,
+    "status": "revision_rendered",
+    "issue_number": null,
     "requested_at": "2026-10-30T12:03:21.517070+00:00",
     "previous_approval_test_only": true,
-    "revision_note": "Kullanıcı 30 Ekim içeriğinde görseli beğenmedi; önceki /onayla yalnızca testti. Premium tasarım revizesi olmadan yayınlanmasın."
+    "revision_note": "Kullanıcı 30 Ekim içeriğinde görseli beğenmedi; önceki /onayla yalnızca testti. Premium tasarım revizesi olmadan yayınlanmasın.",
+    "previous_issue_number": 1,
+    "version": 2,
+    "rendered_at": "2026-10-30T14:00:18.495055+00:00",
+    "render_engine": "premium-pillow-free",
+    "reviewed_revision_note": "Kullanıcı 30 Ekim içeriğinde görseli beğenmedi; önceki /onayla yalnızca testti. Premium tasarım revizesi olmadan yayınlanmasın."
   }
 }
