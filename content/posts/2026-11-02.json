@@ -10,13 +10,17 @@
   "channels": {
     "instagram": {
       "caption": "Web siteniz iyi görünüyor ama ziyaretçiler iletişime geçmiyor mu? Sorunu yalnızca tasarımın estetik tarafında aramayın. İlk ekranda ne sunduğunuz açık mı? Mobilde hızlı ve rahat kullanılıyor mu? Teklif formu veya iletişim çağrısı doğru yerde mi?\n\nİyi bir kurumsal web sitesi kullanıcıyı doğru bilgiye, oradan da doğru aksiyona taşıyan bir deneyim sunar. Semtaş Dijital’de tasarımı, teknik altyapıyı ve dönüşüm yolculuğunu birlikte ele alıyoruz.\n\nProjenizi konuşalım: semtasdijital.com\n\n#WebTasarım #KurumsalWebSitesi #SemtasDijital",
-      "state": "pending",
-      "buffer_post_id": null
+      "state": "queued",
+      "buffer_post_id": "6ae4b2a59394ea34c11e978e",
+      "due_at": "2026-11-02T09:30:00.000Z",
+      "approved_queue_source": "manual-week-2026-11-02"
     },
     "linkedin": {
       "caption": "Kurumsal web sitesi yalnızca dijital bir kartvizit değildir. Potansiyel müşterinin ilk izlenimini, markaya duyduğu güveni ve iletişime geçme kararını etkiler.\n\nSitenizi üç açıdan değerlendirin: değer öneriniz ilk bakışta anlaşılıyor mu, mobil deneyim hızlı ve tutarlı mı, kullanıcı doğru adımla teklif alabiliyor mu?\n\nWeb tasarım, teknik SEO ve dönüşüm odaklı sayfa kurgusu ayrı işler gibi yönetildiğinde bütünlük kaybolabilir. Semtaş Dijital olarak bu parçaları tek bir kullanıcı yolculuğunda buluşturuyoruz.\n\nProjenizi konuşalım: semtasdijital.com",
-      "state": "pending",
-      "buffer_post_id": null
+      "state": "queued",
+      "buffer_post_id": "6ae4b2a5df85d8ab2f3f755f",
+      "due_at": "2026-11-02T09:30:00.000Z",
+      "approved_queue_source": "manual-week-2026-11-02"
     }
   },
   "review": {

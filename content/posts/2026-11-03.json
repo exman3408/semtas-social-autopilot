@@ -10,13 +10,17 @@
   "channels": {
     "instagram": {
       "caption": "Reklam bütçenizi artırmadan önce bu üç noktaya bakın:\n\n01 — Ölçümleme: Hangi kampanyanın gerçek talep oluşturduğunu biliyor musunuz?\n02 — Hedefleme: Mesajınız gerçekten doğru karar vericilere mi ulaşıyor?\n03 — Açılış sayfası: Reklamın vaat ettiği deneyim, tıklama sonrasında da devam ediyor mu?\n\nGoogle Ads ve Meta Ads’de sürdürülebilir iyileşme, sadece daha fazla gösterim satın almakla değil, bütün süreci doğru okumakla başlar.\n\nKampanyalarınızı birlikte değerlendirelim: semtasdijital.com\n\n#GoogleAds #MetaAds #DijitalReklam #SemtasDijital",
-      "state": "pending",
-      "buffer_post_id": null
+      "state": "queued",
+      "buffer_post_id": "6ae4b2a61c3539c1f4e1708e",
+      "due_at": "2026-11-03T09:30:00.000Z",
+      "approved_queue_source": "manual-week-2026-11-02"
     },
     "linkedin": {
       "caption": "Bütçe artışı her zaman reklam performansının çözümü değildir. Önce sistemi kontrol etmek gerekir.\n\nÜç kritik soru: Dönüşümler doğru ölçülüyor mu? Hedef kitle ile mesaj uyumlu mu? Reklamdan gelen ziyaretçi, beklentisine uygun bir sayfayla karşılaşıyor mu?\n\nReklam hesabı, kreatifler ve açılış sayfası aynı stratejinin parçalarıdır. Birini tek başına optimize etmek çoğu zaman yeterli değildir.\n\nSemtaş Dijital’de Google ve Meta reklam yönetimini ölçümleme, hedefleme ve dönüşüm odaklı deneyimle birlikte değerlendiriyoruz.\n\nProjenizi konuşalım: semtasdijital.com",
-      "state": "pending",
-      "buffer_post_id": null
+      "state": "queued",
+      "buffer_post_id": "6ae4b2a71c3539c1f4e170ee",
+      "due_at": "2026-11-03T09:30:00.000Z",
+      "approved_queue_source": "manual-week-2026-11-02"
     }
   },
   "review": {
