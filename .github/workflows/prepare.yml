@@ -28,6 +28,9 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-3.5-flash-lite
           DEMO_MODE: 'false'
+          IMAGE_ENGINE: ${{ vars.IMAGE_ENGINE || 'premium_pillow' }}
+          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-nano-banana-2.1' }}
+          ALLOW_PAID_GEMINI_IMAGE_API: 'false'
         run: python -m socialbot prepare
       - name: Save generated posts and media
         run: |
