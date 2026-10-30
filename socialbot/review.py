@@ -50,6 +50,8 @@ def issue_body(post, base):
         "<!-- " + MARKER + ":" + post["date"] + " -->",
         "# SEMTAŞ DİJİTAL — Yayın öncesi onay",
         "",
+        "@exman3408, yeni bir Semtaş Dijital içeriği incelemeni bekliyor.",
+        "",
         "**Tarih:** " + post["date"],
         "**Konu:** " + post.get("category", ""),
         "**Başlık:** " + post.get("headline", ""),
