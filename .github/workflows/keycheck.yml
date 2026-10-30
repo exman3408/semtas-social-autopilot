@@ -1,0 +1,22 @@
+name: 5 - Gemini API anahtar kontrolu (ucretsiz)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/keycheck.yml'
+permissions:
+  contents: read
+jobs:
+  api-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Gemini API model listeleme (ucretli gorsel istegi yok)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python -m socialbot.keycheck
