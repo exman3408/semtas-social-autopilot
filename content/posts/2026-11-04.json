@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-04",
+  "category": "TEKNİK SEO",
+  "seed": "Google sizi keşfedebiliyor mu?",
+  "headline": "Google sizi keşfedebiliyor mu?",
+  "subheadline": "Teknik SEO; tarama, hız ve kullanıcı deneyimiyle başlar.",
+  "art_type": "editorial-premium-manual",
+  "manual_week": "2026-11-02",
+  "media_file": "semtas-2026-11-04-seo.png",
+  "channels": {
+    "instagram": {
+      "caption": "Güzel bir web sitesi hazırlamak önemli. Peki arama motorları sayfalarınızı doğru şekilde tarayıp anlayabiliyor mu?\n\nTeknik SEO kontrolünde önceliklerimiz: taranabilir sayfa yapısı, doğru indeksleme sinyalleri, mobil kullanılabilirlik, sayfa hızı ve mantıklı bağlantı mimarisi.\n\nBu temel konular, içeriklerinizin arama motorları tarafından daha sağlıklı değerlendirilmesine yardımcı olur. Teknik SEO tek seferlik bir işlem değil, düzenli kontrol gerektiren bir süreçtir.\n\nWeb sitenizin teknik durumunu inceleyelim: semtasdijital.com\n\n#TeknikSEO #SEO #WebPerformansı #SemtasDijital",
+      "state": "pending",
+      "buffer_post_id": null
+    },
+    "linkedin": {
+      "caption": "SEO stratejisinde içerik kadar, içeriğin üzerinde çalıştığı teknik altyapı da önemlidir.\n\nBir sayfa dizine eklenemiyorsa veya kullanıcı mobilde ciddi performans sorunları yaşıyorsa, iyi hazırlanmış içerik beklenen katkıyı vermeyebilir.\n\nBu nedenle teknik SEO analizinde tarama ve indeksleme, site mimarisi, performans, mobil kullanılabilirlik ve yapılandırılmış veri gibi konuları önceliklendiriyoruz.\n\nHedefimiz sıralama garantisi vermek değil; görünürlüğün üzerinde yükseleceği sağlam temeli kurmak.\n\nSemtaş Dijital ile teknik değerlendirme: semtasdijital.com",
+      "state": "pending",
+      "buffer_post_id": null
+    }
+  },
+  "review": {
+    "status": "awaiting_issue"
+  }
+}

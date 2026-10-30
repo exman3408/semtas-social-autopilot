@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-06",
+  "category": "DİJİTAL STRATEJİ",
+  "seed": "Büyüme tek bir kanaldan gelmez.",
+  "headline": "Büyüme tek bir kanaldan gelmez.",
+  "subheadline": "Web, reklam ve SEO birlikte çalıştığında strateji güçlenir.",
+  "art_type": "editorial-premium-manual",
+  "manual_week": "2026-11-02",
+  "media_file": "semtas-2026-11-06-strategy.png",
+  "channels": {
+    "instagram": {
+      "caption": "Web siteniz, reklam kampanyalarınız ve SEO çalışmalarınız birbirinden bağımsız ilerliyorsa dijital yatırımlarınızın bütününü görmek zorlaşır.\n\nReklam doğru kişiyi getirir. Site güven verir ve yönlendirir. SEO ise ihtiyaç anındaki keşfedilebilirliğinize destek olur. Ölçümleme bütün bu temas noktalarını anlamanızı sağlar.\n\nDijital büyüme için tek bir kanalı değil, birlikte çalışan bir sistemi düşünün.\n\nStratejinizi konuşalım: semtasdijital.com\n\n#DijitalStrateji #GoogleAds #SEO #SemtasDijital",
+      "state": "pending",
+      "buffer_post_id": null
+    },
+    "linkedin": {
+      "caption": "Başarılı dijital pazarlama, kanalları tek tek yönetmekten fazlasını gerektirir.\n\nArama görünürlüğü, ücretli trafik, kurumsal web sitesi ve dönüşüm ölçümlemesi ortak bir hedefe hizmet etmelidir. Aksi durumda her kanal kendi sonuçlarını raporlar ama işletmenin gerçek müşteri yolculuğu gözden kaçabilir.\n\nSemtaş Dijital’de önce hedefi, ardından kullanıcı yolculuğunu ve kanal rollerini netleştiriyoruz. Böylece tasarım ve performans kararları aynı stratejiyle ilerleyebiliyor.\n\nDijital yol haritanızı konuşalım: semtasdijital.com",
+      "state": "pending",
+      "buffer_post_id": null
+    }
+  },
+  "review": {
+    "status": "awaiting_issue"
+  }
+}
