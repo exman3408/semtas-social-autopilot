@@ -15,6 +15,7 @@ from .brand import topic_for
 from .research import recent_articles
 from .copywriter import generate, demo_copy, GenerationError
 from .render import render_png
+from .creative import create_artwork, ArtworkError
 from .approved import get_first_use, seeded_copy
 from .buffer_api import BufferAPI, BufferError
 from .analytics import create_weekly_report
@@ -66,8 +67,7 @@ def prepare():
         copy = generate(topic, sources)
         landscape = topic['channels'] == ['linkedin']
         name = f'semtas-{day.isoformat()}.png'
-        render_png(MEDIA/name, copy['headline'], copy['subheadline'], topic['category'], layout='square' if landscape else 'portrait')
-        art_type = 'brand-template'
+        art_type = create_artwork(MEDIA/name, copy['headline'], copy['subheadline'], topic['category'], layout='square' if landscape else 'portrait')
 
     post = {
         'date': day.isoformat(), 'category': topic['category'], 'seed': topic['seed'],
@@ -190,7 +190,7 @@ def main():
         sys.exit(2)
     try:
         choices[arg]()
-    except (RuntimeError, GenerationError, ValueError, KeyError) as exc:
+    except (RuntimeError, GenerationError, ArtworkError, ValueError, KeyError) as exc:
         print(f'[ERROR] {exc}')
         sys.exit(1)
 
