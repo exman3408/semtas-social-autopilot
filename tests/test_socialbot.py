@@ -194,3 +194,52 @@ class RevisionCommandTests(unittest.TestCase):
                 review.apply_comment()
             result=json.loads(p.read_text(encoding="utf-8"))
             self.assertEqual(result["review"]["status"], "revision_requested")
+
+
+class GeminiImageGatewayTests(unittest.TestCase):
+    def test_premium_free_image_has_real_logo(self):
+        import os
+        from socialbot.creative import create_artwork
+        with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, {"IMAGE_ENGINE":"premium_pillow"}):
+            p=Path(d)/"post.png"
+            backend=create_artwork(p,"Reklam ve SEO birlikte çalışmalı","Birbirini destekleyen dijital yatırımlar.","DİJİTAL STRATEJİ",revision_note="Daha premium")
+            self.assertEqual(backend,"premium-pillow-free")
+            self.assertTrue(p.exists())
+            from PIL import Image
+            with Image.open(p) as im:
+                self.assertEqual(im.size,(1080,1350))
+
+    def test_nano_banana_cannot_make_paid_call_by_default(self):
+        import os
+        from socialbot.creative import create_artwork, ArtworkError
+        with tempfile.TemporaryDirectory() as d:
+            with patch.dict(os.environ, {"IMAGE_ENGINE":"gemini","ALLOW_PAID_GEMINI_IMAGE_API":"false"}):
+                with patch("socialbot.creative.requests.post") as request:
+                    with self.assertRaises(ArtworkError):
+                        create_artwork(Path(d)/"test.png","Test","Test","SEO")
+                    request.assert_not_called()
+
+    def test_revise_has_no_approval_without_new_issue(self):
+        import json, os
+        from socialbot import revise
+        with tempfile.TemporaryDirectory() as d:
+            posts=Path(d)/"posts";posts.mkdir()
+            media=Path(d)/"media";media.mkdir()
+            p=posts/"2026-10-30.json"
+            p.write_text(json.dumps({
+              "date":"2026-10-30","category":"SEO","headline":"SEO ve hız",
+              "subheadline":"Test","media_file":"old.png",
+              "review":{"status":"revision_requested","issue_number":2,"revision_note":"Daha premium"},
+              "channels":{"instagram":{"state":"pending","buffer_post_id":None}}
+            }),encoding="utf8")
+            with patch.object(revise,"POSTS",posts),patch.object(revise,"MEDIA",media),patch("socialbot.revise.create_artwork",return_value="premium-pillow-free") as image_maker:
+                def write_file(path,*args,**kwargs):
+                    Path(path).write_bytes(b"test-image"*1500)
+                    return "premium-pillow-free"
+                image_maker.side_effect=write_file
+                revise.render_pending()
+            result=json.loads(p.read_text(encoding="utf8"))
+            self.assertEqual(result["review"]["status"],"revision_rendered")
+            self.assertIsNone(result["review"]["issue_number"])
+            self.assertEqual(result["review"]["previous_issue_number"],2)
+            self.assertNotEqual(result["media_file"],"old.png")
