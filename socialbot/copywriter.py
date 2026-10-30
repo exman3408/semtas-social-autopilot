@@ -46,7 +46,7 @@ def generate(topic, sources):
     key = os.getenv("GEMINI_API_KEY", "").strip()
     if not key:
         raise GenerationError("GEMINI_API_KEY yok; canlı içerik oluşturma durduruldu")
-    model = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-lite').strip()
+    model = os.getenv('GEMINI_MODEL', 'gemini-3.5-flash-lite').strip()
     prompt = f'''Türkçe B2B sosyal medya stratejisti ve kıdemli kreatif metin yazarı olarak davran.
 Marka: {BRAND_NAME}; Hizmetler: WordPress / kurumsal web tasarım, Shopify e-ticaret tasarımı, teknik SEO, Google ve Meta reklam yönetimi.
 Marka sitesi: {DOMAIN}; Amaç: Türkiye'de bütçeli karar vericilere, ajans hizmetleri için nitelikli talep oluşturmak.
